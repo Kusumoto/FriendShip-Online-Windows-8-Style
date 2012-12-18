@@ -1,44 +1,60 @@
 <?php
-//Start PHP Script
-$id = $_REQUEST['id'];
+/*
+FriendShip-Online-Windows-8-Style
+---------------------------------------------------------
+FriendShip Online Windows 8 Style for Student and School
+Design for PHP and MYSQL
+Programmer :: Kusumoto
+Website :: http://kusumoto.co
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+---------------------------------------------------------
+*/
 
+//Start PHP Script
+//Get People parameters
+$id = $_REQUEST['id'];
+//set function get URL
 function curPageURL() {
- $pageURL = 'http';
- if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
- $pageURL .= "://";
- if ($_SERVER["SERVER_PORT"] != "80") {
-  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
- } else {
-  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
- }
- return $pageURL;
+	 $pageURL = 'http';
+ 		if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+			 $pageURL .= "://";
+		 if ($_SERVER["SERVER_PORT"] != "80") {
+ 			 $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+	 } else {
+ 	 $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+  }
+return $pageURL;
 }
 
+//check no people parameters
 if ($id=="") {
-echo "Error Hacker!!!!!"; 
+	echo "Error Hacker!!!!!"; 
 exit;
 }
+
+//include config file and database connector
 include("config.inc.php");
 mysql_connect($host,$user,$pass)or die("ไม่สามารถเชื่อมต่อฐานข้อมูลได้");
 mysql_select_db($dbname);
 mysql_query(" set NAMES utf8");
-
+//select database
 $sql = "SELECT * from friend_data WHERE id='$id'";
 $dbquery = mysql_query($sql);
 $result = mysql_fetch_array($dbquery);
-
+//if this people id not found in Database
 if (!$result) {
     echo "ไม่พบคนๆนี้ คุณเป็นใครกันแน่?";
     exit;
     }
- $pic = mysql_result($dbquery, 0, 'pic') ;
- $name = mysql_result($dbquery, 0, 'name') ;
-  $address = mysql_result($dbquery, 0, 'address') ;
-  $phonenumber = mysql_result($dbquery, 0, 'phonenumber') ;
- $university = mysql_result($dbquery, 0, 'university') ;
-   $email = mysql_result($dbquery, 0, 'email') ;   
-  $facebook = mysql_result($dbquery, 0, 'facebook') ;
-  $twitter = mysql_result($dbquery, 0, 'twitter') ;
+//get data from database
+ 	$pic = mysql_result($dbquery, 0, 'pic') ;
+ 	$name = mysql_result($dbquery, 0, 'name') ;
+	$address = mysql_result($dbquery, 0, 'address') ;
+	$phonenumber = mysql_result($dbquery, 0, 'phonenumber') ;
+ 	$university = mysql_result($dbquery, 0, 'university') ;
+   	$email = mysql_result($dbquery, 0, 'email') ;   
+  	$facebook = mysql_result($dbquery, 0, 'facebook') ;
+  	$twitter = mysql_result($dbquery, 0, 'twitter') ;
   
 //End PHP Script
 ?>
@@ -51,7 +67,7 @@ if (!$result) {
     <meta name="author" content="Azerdar Kusumoto">
     <link href="css/modern.css" rel="stylesheet">
     <link href="css/modern-responsive.css" rel="stylesheet">
-    <title>We are 6.3 :: Phatthalung School 2012 - Profile</title>
+    <title><?php echo $config_titleว ?></title>
     
     <link href="css/theme-dark.css" rel="stylesheet" type="text/css">
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
@@ -88,7 +104,7 @@ if (!$result) {
 <div class="page-header-content">
 <h1>
 Profile
-<small>We are 6.3 :: Phatthalung School 2012</small>
+<small><?php echo $config_firstname . "::" . $config_lastname; ?></small>
 </h1>
 <a class="back-button big page-back" href="http://friendship.kusumoto.co"></a>
 </div>
@@ -116,7 +132,7 @@ Profile
   <strong>E-Mail :: </strong><?php echo $email; ?></br>
   <strong>Facebook :: </strong><?php echo $facebook; ?></br>
   <strong>Twitter :: </strong><?php echo $twitter; ?> </br>
-  <center><a href="http://kusumoto.co/friendship_old/editprofile.php?id=<?php echo $id; ?>" target="_Blank" class="button bg-color-green"  >แก้ไขข้อมูลเพิ่มเติม</a></center>
+  <center><a href="member_editprofile.php?id=<?php echo $id; ?>" target="_Blank" class="button bg-color-green"  >แก้ไขข้อมูลเพิ่มเติม</a></center>
 
 	</div>
 	<div class="fb-comments bg-color-orange border-color-red " data-href="<?php echo curPageURL() ?>" data-num-posts="5" data-width="470"">...
