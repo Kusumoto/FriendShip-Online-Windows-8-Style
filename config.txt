@@ -1,0 +1,32 @@
+<?php
+
+/*
+FriendShip-Online-Windows-8-Style
+---------------------------------------------------------
+FriendShip Online Windows 8 Style for Student and School
+Design for PHP and MYSQL
+Programmer :: Kusumoto
+Website :: http://kusumoto.co
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+---------------------------------------------------------
+*/
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+//config.inc.php
+//database config
+$host = "data_mysqlhost";
+$user = "data_mysqluser";
+$pass = "data_mysqlpass";
+$dbname = "data_mysqldb";
+
+//site config
+$config_title = "data_titlebar";
+$config_firstname = "data_titlebar";
+$config_lastname = "data_titlebar";
+$config_adminuser = "data_adminuser";
+$config_adminpaass = "data_adminpass";
+$config_memberpass = "data_memberpass";
+$config_startname = "data_startname";
+$config_logo = "data_logo";
+
+?>
